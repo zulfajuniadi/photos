@@ -1,0 +1,24 @@
+{
+  "name": "zulfam-photos",
+  "version": "0.0.0",
+  "authors": [
+    "Zulfa Juniadi Zulkifli <zulfajuniadi@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "~3.1.0",
+    "dropzone": "~3.8.4",
+    "jquery": "~2.1.0",
+    "isotope": "~2.0.0",
+    "Bootflat": "~2.0.1",
+    "imagesloaded": "~3.1.4",
+    "bootbox": "~4.2.0"
+  }
+}
