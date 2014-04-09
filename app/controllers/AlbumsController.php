@@ -42,10 +42,10 @@ class AlbumsController extends BaseController
       return Response::json($file_name . ' already exists', 400);
 
     try {
-      mkdir('public/uploads');
-      mkdir('public/uploads/originals');
-      mkdir('public/uploads/mediums');
-      mkdir('public/uploads/thumbs');
+      mkdir(public_path() . '/uploads');
+      mkdir(public_path() . '/uploads/originals');
+      mkdir(public_path() . '/uploads/mediums');
+      mkdir(public_path() . '/uploads/thumbs');
     } catch (Exception $e) {
 
     }
@@ -53,9 +53,9 @@ class AlbumsController extends BaseController
     $file_type = $file->getMimeType();
     $file_size = $file->getSize();
 
-    $file_directory = 'public/uploads/originals';
-    $medium_directory = 'public/uploads/mediums';
-    $thumb_directory = 'public/uploads/thumbs';
+    $file_directory = public_path() . '/uploads/originals';
+    $medium_directory = public_path() . '/uploads/mediums';
+    $thumb_directory = public_path() . '/uploads/thumbs';
     $extension = $file->getClientOriginalExtension();
     $masked_name = sha1(time().microtime()).".{$extension}";
 
