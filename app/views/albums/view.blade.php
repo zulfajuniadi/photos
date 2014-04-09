@@ -34,6 +34,7 @@
     .slider .modal-body {
       padding: 0px;
       min-height: 100%;
+      position: static;
     }
 
     .slider .bootbox-body {
