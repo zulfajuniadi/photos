@@ -11,6 +11,29 @@ class AlbumsController extends BaseController
       ]);
   }
 
+  public function deleteIndex($id)
+  {
+    $album = Album::find($id);
+    if($album) {
+      $album->delete();
+      $pictures = Picture::where('album_id', '=', $id);
+      foreach ($pictures as $picture) {
+        if(file_exists(public_path() . '/' . $picture->file_path)) {
+          unlink(public_path() . '/' . $picture->file_path);
+        }
+        if(file_exists(public_path() . '/' . $picture->medium_path)) {
+          unlink(public_path() . '/' . $picture->medium_path);
+        }
+        if(file_exists(public_path() . '/' . $picture->thumb_path)) {
+          unlink(public_path() . '/' . $picture->thumb_path);
+        }
+        $picture->delete();
+      }
+      return Response::json('OK', 200);
+    }
+    return Response::json('NOT FOUND', 404);
+  }
+
   public function postNew()
   {
     $album = new Album;
@@ -29,7 +52,12 @@ class AlbumsController extends BaseController
   }
 
   public function deletePicture($id) {
-    return Response::json('OK', 200);
+    $picture = Picture::find($id);
+    if($picture) {
+      $picture->delete();
+      return Response::json('OK', 200);
+    }
+    return Response::json('NOT FOUND', 404);
   }
 
   public function postNewImage($album_id)
