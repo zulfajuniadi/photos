@@ -15,9 +15,9 @@ class AlbumsController extends BaseController
   {
     $album = Album::find($id);
     if($album) {
-      $album->delete();
       $pictures = Picture::where('album_id', '=', $id);
       foreach ($pictures as $picture) {
+        echo public_path() . '/' . $picture->file_path;
         if(file_exists(public_path() . '/' . $picture->file_path)) {
           unlink(public_path() . '/' . $picture->file_path);
         }
@@ -29,7 +29,8 @@ class AlbumsController extends BaseController
         }
         $picture->delete();
       }
-      return Response::json('OK', 200);
+      $album->delete();
+      return Response::json('OK', 404);
     }
     return Response::json('NOT FOUND', 404);
   }
