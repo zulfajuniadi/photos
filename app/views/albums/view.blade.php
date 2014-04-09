@@ -227,7 +227,7 @@
     })
 
     $('#uploadImage').click(function(){
-      bootbox.confirm('<div id="dropzone"></div>', function(){});
+      bootbox.confirm('<hr/><div id="dropzone"></div>', function(){});
       $('.btn.btn-default[type=button][data-bb-handler=cancel]').remove();
       $('#dropzone')
         .addClass('dropzone')
