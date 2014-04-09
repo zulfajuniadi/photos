@@ -242,6 +242,7 @@
         .dropzone({
           url: "{{action('AlbumsController@postNewImage', $album->id)}}",
           addRemoveLinks: true,
+          parallelUploads: 1,
           acceptedFiles: 'image/*',
           init: function() {
             this.on("success",
