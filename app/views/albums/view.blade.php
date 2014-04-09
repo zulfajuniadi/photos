@@ -176,7 +176,7 @@
                 removeSpan.remove();
                 var images = $('img', '#pictures');
                 if(images.length < 1)
-                  $.ajax('/albums/' + window.location.pathname.split('/').pop(), {
+                  $.ajax('/albums/index/' + window.location.pathname.split('/').pop(), {
                     method: 'DELETE',
                     success: function() {
                       window.location.href = '/albums';
