@@ -175,6 +175,8 @@
               success: function() {
                 removeSpan.remove();
                 var images = $('img', '#pictures');
+                $('#right_ctrl').trigger('click');
+                $('#pictures').isotope( 'reloadItems' ).isotope();
                 if(images.length < 1) {
                   $.ajax('/albums/index/' + window.location.pathname.split('/').pop(), {
                     method: 'DELETE',
@@ -183,8 +185,6 @@
                     }
                   });
                 }
-                $('#right_ctrl').trigger('click');
-                $('#pictures').isotope( 'reloadItems' ).isotope();
               }
             })
           }
