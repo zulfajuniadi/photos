@@ -174,17 +174,17 @@
               method: 'DELETE',
               success: function() {
                 removeSpan.remove();
-                var images = $('img', '#pictures');
                 $('#right_ctrl').trigger('click');
                 $('#pictures').isotope( 'reloadItems' ).isotope();
-                if(images.length < 1) {
-                  $.ajax('/albums/index/' + window.location.pathname.split('/').pop(), {
-                    method: 'DELETE',
-                    success: function() {
-                      window.location.href = '/albums';
-                    }
-                  });
-                }
+                // var images = $('img', '#pictures');
+                // if(images.length < 1) {
+                //   $.ajax('/albums/index/' + window.location.pathname.split('/').pop(), {
+                //     method: 'DELETE',
+                //     success: function() {
+                //       window.location.href = '/albums';
+                //     }
+                //   });
+                // }
               }
             })
           }
