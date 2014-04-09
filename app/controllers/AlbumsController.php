@@ -41,21 +41,20 @@ class AlbumsController extends BaseController
     if(Picture::where('file_name', '=', $file_name)->where('album_id', '=', $album_id)->count() > 0)
       return Response::json($file_name . ' already exists', 400);
 
+    $file_directory = public_path() . '/uploads/originals';
+    $medium_directory = public_path() . '/uploads/mediums';
+    $thumb_directory = public_path() . '/uploads/thumbs';
+
     try {
-      mkdir(public_path() . 'uploads');
-      mkdir(public_path() . 'uploads/originals');
-      mkdir(public_path() . 'uploads/mediums');
-      mkdir(public_path() . 'uploads/thumbs');
+      mkdir($file_directory, null, true);
+      mkdir($medium_directory, null, true);
+      mkdir($thumb_directory, null, true);
     } catch (Exception $e) {
 
     }
 
     $file_type = $file->getMimeType();
     $file_size = $file->getSize();
-
-    $file_directory = public_path() . 'uploads/originals';
-    $medium_directory = public_path() . 'uploads/mediums';
-    $thumb_directory = public_path() . 'uploads/thumbs';
     $extension = $file->getClientOriginalExtension();
     $masked_name = sha1(time().microtime()).".{$extension}";
 
@@ -75,9 +74,9 @@ class AlbumsController extends BaseController
     $picture->album_id = $album_id;
     $picture->file_name = $file_name;
     $picture->file_size = $file_size;
-    $picture->file_path = str_replace('public', '', $file_path);
-    $picture->thumb_path = str_replace('public', '', $thumb_path);
-    $picture->medium_path = str_replace('public', '', $medium_path);
+    $picture->file_path = str_replace('public/', '', $file_path);
+    $picture->thumb_path = str_replace('public/', '', $thumb_path);
+    $picture->medium_path = str_replace('public/', '', $medium_path);
     $picture->file_type = $file_type;
     $picture->exif_data = $exif_data;
     $picture->width = $dimension[0];
