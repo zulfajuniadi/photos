@@ -46,10 +46,10 @@ class AlbumsController extends BaseController
     $thumb_directory = public_path() . '/uploads/thumbs';
 
     try {
-      mkdir(public_path() . '/uploads' , null, true);
-      mkdir($file_directory, null, true);
-      mkdir($medium_directory, null, true);
-      mkdir($thumb_directory, null, true);
+      mkdir(public_path() . '/uploads' , 0644, true);
+      mkdir($file_directory, 0644, true);
+      mkdir($medium_directory, 0644, true);
+      mkdir($thumb_directory, 0644, true);
     } catch (Exception $e) {
 
     }
