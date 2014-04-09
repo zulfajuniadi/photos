@@ -15,22 +15,8 @@ class AlbumsController extends BaseController
   {
     $album = Album::find($id);
     if($album) {
-      $pictures = Picture::where('album_id', '=', $id)->get();
-      foreach ($pictures as $picture) {
-        $pic_path = public_path() . '/' . $picture->file_path;
-        if(file_exists(public_path() . '/' . $picture->file_path)) {
-          unlink(public_path() . '/' . $picture->file_path);
-        }
-        if(file_exists(public_path() . '/' . $picture->medium_path)) {
-          unlink(public_path() . '/' . $picture->medium_path);
-        }
-        if(file_exists(public_path() . '/' . $picture->thumb_path)) {
-          unlink(public_path() . '/' . $picture->thumb_path);
-        }
-        $picture->delete();
-      }
       $album->delete();
-      return Response::json($pic_path, 404);
+      return Response::json('OK', 200);
     }
     return Response::json('NOT FOUND', 404);
   }
@@ -55,6 +41,9 @@ class AlbumsController extends BaseController
   public function deletePicture($id) {
     $picture = Picture::find($id);
     if($picture) {
+      unlink( public_path() . '/' . $picture->file_path );
+      unlink( public_path() . '/' . $picture->medium_path );
+      unlink( public_path() . '/' . $picture->thumb_path );
       $picture->delete();
       return Response::json('OK', 200);
     }
