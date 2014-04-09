@@ -41,9 +41,11 @@ class AlbumsController extends BaseController
   public function deletePicture($id) {
     $picture = Picture::find($id);
     if($picture) {
-      unlink( public_path() . '/' . $picture->file_path );
-      unlink( public_path() . '/' . $picture->medium_path );
-      unlink( public_path() . '/' . $picture->thumb_path );
+      try {
+        unlink( public_path() . '/' . $picture->file_path );
+        unlink( public_path() . '/' . $picture->medium_path );
+        unlink( public_path() . '/' . $picture->thumb_path );
+      } catch (Exception $e) {}
       $picture->delete();
       return Response::json('OK', 200);
     }
