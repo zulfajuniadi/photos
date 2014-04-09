@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="header">
+  <div class="header" style="margin-top:10px">
     <ul class="list-unstyled list-inline">
       <li><a class="active" href="/albums">Albums</a></li>
       <li><a id="newAlbum">+</a></li>
