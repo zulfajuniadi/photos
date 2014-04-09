@@ -33,6 +33,11 @@
 
     .slider .modal-body {
       padding: 0px;
+      min-height: 100%;
+    }
+
+    .slider .bootbox-body {
+      min-height: 100%;
     }
 
     .slider .modal-footer {
@@ -43,6 +48,7 @@
       background-color: rgba(0, 0, 0, 0.2);
       text-align: center;
       background-color: rgba(0,0,0,0.2);
+      min-height: 100%;
     }
 
     .slider .gallery {
