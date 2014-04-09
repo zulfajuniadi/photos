@@ -15,7 +15,7 @@ class AlbumsController extends BaseController
   {
     $album = Album::find($id);
     if($album) {
-      $pictures = Picture::where('album_id', '=', $id);
+      $pictures = Picture::where('album_id', '=', $id)->get();
       foreach ($pictures as $picture) {
         echo public_path() . '/' . $picture->file_path;
         if(file_exists(public_path() . '/' . $picture->file_path)) {
