@@ -103,13 +103,9 @@ class AlbumsController extends BaseController
     $picture->width = $dimension[0];
     $picture->height = $dimension[1];
 
-    $picture->save();
-
     try {
       $this->fix_orientation($file_path);
-    } catch (Exception $e) {
-
-    }
+    } catch (Exception $e) {}
 
     /* thumbnail */
 
@@ -122,6 +118,7 @@ class AlbumsController extends BaseController
     $thumb->writeImage($medium_path);
 
     if( $upload_success ) {
+      $picture->save();
       return Response::json($picture, 200);
     } else {
       return Response::json('error', 400);
