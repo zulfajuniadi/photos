@@ -175,13 +175,14 @@
               success: function() {
                 removeSpan.remove();
                 var images = $('img', '#pictures');
-                if(images.length < 1)
+                if(images.length < 1) {
                   $.ajax('/albums/index/' + window.location.pathname.split('/').pop(), {
                     method: 'DELETE',
                     success: function() {
                       window.location.href = '/albums';
                     }
-                  })
+                  });
+                }
                 $('#right_ctrl').trigger('click');
                 $('#pictures').isotope( 'reloadItems' ).isotope();
               }
