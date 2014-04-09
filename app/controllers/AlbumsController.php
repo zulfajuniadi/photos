@@ -75,9 +75,9 @@ class AlbumsController extends BaseController
     $picture->album_id = $album_id;
     $picture->file_name = $file_name;
     $picture->file_size = $file_size;
-    $picture->file_path = str_replace('public/', '', $file_path);
-    $picture->thumb_path = str_replace('public/', '', $thumb_path);
-    $picture->medium_path = str_replace('public/', '', $medium_path);
+    $picture->file_path = '/uploads/originals/' . $masked_name;
+    $picture->thumb_path = '/uploads/thumbs/' . $masked_name;
+    $picture->medium_path = '/uploads/mediums/' . $masked_name;
     $picture->file_type = $file_type;
     $picture->exif_data = $exif_data;
     $picture->width = $dimension[0];
