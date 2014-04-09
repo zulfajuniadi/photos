@@ -242,19 +242,22 @@
         .dropzone({
           url: "{{action('AlbumsController@postNewImage', $album->id)}}",
           addRemoveLinks: true,
-          clickable: true,
           acceptedFiles: 'image/*',
-          success: function(file, result){
-            var image = new Image;
-            var span = $('<span/>');
-            image.onload = function(){
-              pictureDiv.isotope( 'reloadItems' ).isotope();
-            };
-            image.src = result.thumb_path;
-            span.data(result);
-            span.append(image);
-            pictureDiv.append(span);
-            return true;
+          init: function() {
+            this.on("success",
+              function(file, result){
+                var image = new Image;
+                var span = $('<span/>');
+                image.onload = function(){
+                  pictureDiv.isotope( 'reloadItems' ).isotope();
+                };
+                image.src = result.thumb_path;
+                span.data(result);
+                span.append(image);
+                pictureDiv.append(span);
+                return;
+              }
+            )
           }
         });
     })
