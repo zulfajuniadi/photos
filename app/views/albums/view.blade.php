@@ -2,6 +2,7 @@
 
 @section('content')
   <style>
+
     .uploadImage {
       width:180px;
       height:150px;
@@ -81,7 +82,6 @@
     #download {
       top:51px;
       right:10px;
-      color:#333;
     }
 
     #download:hover {
@@ -98,19 +98,48 @@
       top: 50%;
       height: 40px;
       width: 40px;
-      background-color: rgba(255, 255, 255, 0.55);
-      padding-top: 11px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding-top: 0px;
       cursor: pointer;
+      font-size: 40px;
+      line-height: 1em;
+    }
+
+    .slider .controls, .slider .controls * {
+      color: rgba(0,0,0,0.3);
     }
 
     .slider .controls:hover {
       background-color: rgba(255, 255, 255, 1);
+      color: #333;
     }
 
     #loading {
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: calc(50% - 24px);
+    }
+
+    @media(max-width:767px){
+      #pictures > * {
+        max-width: 80px;
+      }
+      #pictures img {
+        width: 100%;
+      }
+      .uploadImage {
+        height: 100px;
+        padding-top: 6px;
+      }
+
+      .slider .gallery {
+        overflow-x: scroll;
+        height: 100%;
+      }
+
+      .slider .gallery img {
+        height: 100%;
+      }
     }
 
   </style>
@@ -227,7 +256,7 @@
 
     $('#pictures').on('click', 'span', function(){
       var data = $(this).data();
-      bootbox.confirm('<div id="loading"><img src="/loading.gif" /></div><div class="gallery"></div><div class="controls" id="left_ctrl">PREV</div><div class="controls" id="right_ctrl">NEXT</div><div id="stopSlider" data-picid="' + data.id + '" class="controls">EXIT</div><div id="deletePicture" data-picid="' + data.id + '" class="controls">DEL</div><a href="' + data.file_path + '" download="' + data.file_name + '" id="download" class="controls">DNLD</a>', function(){});
+      bootbox.confirm('<div id="loading"><img src="/loading.gif" /></div><div class="gallery"></div><div class="controls" id="left_ctrl">&#8249;</div><div class="controls" id="right_ctrl">&#8250;</div><div id="stopSlider" data-picid="' + data.id + '" class="controls">↩</div><div id="deletePicture" data-picid="' + data.id + '" class="controls">&times;</div><a href="' + data.file_path + '" download="' + data.file_name + '" id="download" class="controls">&#9660;</a>', function(){});
       $('.btn.btn-default[type=button][data-bb-handler=cancel]').remove();
       $('.modal').addClass('slider');
       var image = new Image;
