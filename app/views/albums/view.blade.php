@@ -2,7 +2,7 @@
 
 @section('content')
   <style>
-    #uploadImage {
+    .uploadImage {
       width:180px;
       height:150px;
       text-align:center;
@@ -115,6 +115,10 @@
 
   </style>
   <div id="pictures">
+    <div class="uploadImage" style="">
+      Add Image to<br />
+      {{$album->name}}
+    </div>
     @foreach($album->pictures as $picture)
       <span
         @foreach($picture->toArray() as $key => $value)
@@ -122,7 +126,7 @@
         @endforeach
       ><img src="{{$picture->thumb_path}}" alt="" /></span>
     @endforeach
-    <div id="uploadImage" style="">
+    <div class="uploadImage" style="">
       Add Image to<br />
       {{$album->name}}
     </div>
@@ -234,7 +238,7 @@
       };
     })
 
-    $('#uploadImage').click(function(){
+    $('.uploadImage').click(function(){
       bootbox.confirm('<hr/><div id="dropzone"></div>', function(){});
       $('.btn.btn-default[type=button][data-bb-handler=cancel]').remove();
       $('#dropzone')
