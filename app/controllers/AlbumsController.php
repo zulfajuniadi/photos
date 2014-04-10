@@ -57,8 +57,13 @@ class AlbumsController extends BaseController
 
     $file = Input::file('file');
     $file_name = $file->getClientOriginalName();
+    $file_size = $file->getSize();
 
-    if(Picture::where('file_name', '=', $file_name)->where('album_id', '=', $album_id)->count() > 0)
+    if(Picture::where('file_name', '=', $file_name)
+        ->where('album_id', '=', $album_id)
+        ->where('file_size', '=', $file_size)
+        ->count() > 0
+      )
       return Response::json($file_name . ' already exists', 400);
 
     $file_directory = public_path() . '/uploads/originals';
@@ -75,7 +80,6 @@ class AlbumsController extends BaseController
     }
 
     $file_type = $file->getMimeType();
-    $file_size = $file->getSize();
     $extension = $file->getClientOriginalExtension();
     $masked_name = sha1(time().microtime()).".{$extension}";
 
@@ -86,7 +90,7 @@ class AlbumsController extends BaseController
 
     $exif_data = false;
     try {
-      $exif_data = shell_exec('node exifreader.js "' . $file_path . '"');
+      $exif_data = shell_exec('node ' . base_path() . '/exifreader.js "' . $file_path . '"');
     } catch (Exception $e) {}
 
     $dimension = getimagesize($file_path);
