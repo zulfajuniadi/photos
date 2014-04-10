@@ -19,6 +19,7 @@
     "isotope": "~2.0.0",
     "Bootflat": "~2.0.1",
     "imagesloaded": "~3.1.4",
-    "bootbox": "~4.2.0"
+    "bootbox": "~4.2.0",
+    "fastclick": "~1.0.1"
   }
 }

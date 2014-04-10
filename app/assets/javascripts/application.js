@@ -18,4 +18,9 @@
 //= require imagesloaded/imagesloaded
 //= require isotope/dist/isotope.pkgd.min.js
 //= require dropzone/downloads/dropzone.min.js
+//= require fastclick/lib/fastclick.js
 //= require_tree .
+
+window.addEventListener('load', function() {
+    FastClick.attach(document.body);
+}, false);
